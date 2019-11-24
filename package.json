@@ -1,0 +1,22 @@
+{
+	"name": "@qpost/api",
+	"version": "0.1.0",
+	"description": "Node.js library for qpost API",
+	"repository": {
+		"type": "git",
+		"url": "git+https://gitlab.com/Gigadrive/qpost/api-node.git"
+	},
+	"author": "Gigadrive",
+	"license": "GPL-3.0",
+	"bugs": {
+		"url": "https://gitlab.com/Gigadrive/qpost/api-node/issues"
+	},
+	"homepage": "https://gitlab.com/Gigadrive/qpost/api-node#readme",
+	"dependencies": {
+		"axios": "^0.19.0",
+		"typescript": "^3.7.2"
+	},
+	"devDependencies": {
+		"@types/axios": "^0.14.0"
+	}
+}
