@@ -17,3 +17,36 @@
  * along with this program. If not, see <https://gnu.org/licenses/>
  */
 
+import {JsonObject, JsonProperty} from "json2typescript";
+import User from "./User";
+
+@JsonObject("Block")
+export default class Block {
+	@JsonProperty("id", Number)
+	private id: number = undefined;
+
+	@JsonProperty("user", User)
+	private user: User = undefined;
+
+	@JsonProperty("target", User)
+	private target: User = undefined;
+
+	@JsonProperty("time", String)
+	private time: string = undefined;
+
+	public getId(): number {
+		return this.id;
+	}
+
+	public getUser(): User {
+		return this.user;
+	}
+
+	public getTarget(): User {
+		return this.target;
+	}
+
+	public getTime(): string {
+		return this.time;
+	}
+}

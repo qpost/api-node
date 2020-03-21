@@ -17,3 +17,10 @@
  * along with this program. If not, see <https://gnu.org/licenses/>
  */
 
+enum PrivacyLevel {
+	PUBLIC = "PUBLIC",
+	PRIVATE = "PRIVATE",
+	CLOSED = "CLOSED"
+}
+
+export default PrivacyLevel;

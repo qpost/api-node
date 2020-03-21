@@ -17,3 +17,10 @@
  * along with this program. If not, see <https://gnu.org/licenses/>
  */
 
+enum MediaFileType {
+	IMAGE = "IMAGE",
+	VIDEO = "VIDEO",
+	LINK = "LINK"
+}
+
+export default MediaFileType;

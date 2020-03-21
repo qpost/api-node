@@ -17,3 +17,13 @@
  * along with this program. If not, see <https://gnu.org/licenses/>
  */
 
+enum NotificationType {
+	NEW_FOLLOWER = "NEW_FOLLOWER",
+	MENTION = "MENTION",
+	FAVORITE = "FAVORITE",
+	SHARE = "SHARE",
+	REPLY = "REPLY",
+	FOLLOW_REQUEST = "FOLLOW_REQUEST"
+}
+
+export default NotificationType;

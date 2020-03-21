@@ -17,3 +17,11 @@
  * along with this program. If not, see <https://gnu.org/licenses/>
  */
 
+enum FeedEntryType {
+	POST = "POST",
+	REPLY = "REPLY",
+	NEW_FOLLOWING = "NEW_FOLLOWING",
+	SHARE = "SHARE"
+}
+
+export default FeedEntryType;

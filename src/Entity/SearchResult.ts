@@ -17,3 +17,11 @@
  * along with this program. If not, see <https://gnu.org/licenses/>
  */
 
+import FeedEntry from "./FeedEntry";
+import User from "./User";
+
+export default class SearchResult {
+	public type: string;
+	public users: User[];
+	public feedEntries: FeedEntry[];
+}

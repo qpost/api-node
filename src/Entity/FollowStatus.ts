@@ -17,3 +17,11 @@
  * along with this program. If not, see <https://gnu.org/licenses/>
  */
 
+enum FollowStatus {
+	NOT_FOLLOWING,
+	FOLLOWING,
+	PENDING,
+	BLOCKED
+}
+
+export default FollowStatus;

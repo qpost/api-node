@@ -17,3 +17,37 @@
  * along with this program. If not, see <https://gnu.org/licenses/>
  */
 
+import {JsonObject, JsonProperty} from "json2typescript";
+import User from "./User";
+import FeedEntry from "./FeedEntry";
+
+@JsonObject("Favorite")
+export default class Favorite {
+	@JsonProperty("id", Number)
+	private id: number = undefined;
+
+	@JsonProperty("user", User)
+	private user: User = undefined;
+
+	@JsonProperty("feedEntry", FeedEntry)
+	private feedEntry: FeedEntry = undefined;
+
+	@JsonProperty("time", String)
+	private time: string = undefined;
+
+	public getId(): number {
+		return this.id;
+	}
+
+	public getUser(): User {
+		return this.user;
+	}
+
+	public getFeedEntry(): FeedEntry {
+		return this.feedEntry;
+	}
+
+	public getTime(): string {
+		return this.time;
+	}
+}

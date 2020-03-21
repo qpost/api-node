@@ -17,3 +17,8 @@
  * along with this program. If not, see <https://gnu.org/licenses/>
  */
 
+enum Feature {
+	INCREASED_CHARACTER_LIMIT = "INCREASED_CHARACTER_LIMIT"
+}
+
+export default Feature;

@@ -17,3 +17,21 @@
  * along with this program. If not, see <https://gnu.org/licenses/>
  */
 
+import {JsonObject, JsonProperty} from "json2typescript";
+
+@JsonObject("Hashtag")
+export default class Hashtag {
+	@JsonProperty("id", String)
+	private id: string = undefined;
+
+	@JsonProperty("time", String)
+	private time: string = undefined;
+
+	public getId(): string {
+		return this.id;
+	}
+
+	public getTime(): string {
+		return this.time;
+	}
+}

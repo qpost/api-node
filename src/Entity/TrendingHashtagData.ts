@@ -17,3 +17,36 @@
  * along with this program. If not, see <https://gnu.org/licenses/>
  */
 
+import Hashtag from "./Hashtag";
+import {JsonObject, JsonProperty} from "json2typescript";
+
+@JsonObject("TrendingHashtagData")
+export default class TrendingHashtagData {
+	@JsonProperty("id", Number)
+	private id: number = undefined;
+
+	@JsonProperty("postsThisWeek", Number)
+	private postsThisWeek: number = undefined;
+
+	@JsonProperty("time", String)
+	private time: string = undefined;
+
+	@JsonProperty("hashtag", Hashtag)
+	private hashtag: Hashtag = undefined;
+
+	public getId(): number {
+		return this.id;
+	}
+
+	public getPostsThisWeek(): number {
+		return this.postsThisWeek;
+	}
+
+	public getTime(): string {
+		return this.time;
+	}
+
+	public getHashtag(): Hashtag {
+		return this.hashtag;
+	}
+}

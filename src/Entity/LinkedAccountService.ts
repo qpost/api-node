@@ -17,3 +17,12 @@
  * along with this program. If not, see <https://gnu.org/licenses/>
  */
 
+enum LinkedAccountService {
+	DISCORD = "DISCORD",
+	TWITCH = "TWITCH",
+	TWITTER = "TWITTER",
+	MASTODON = "MASTODON",
+	LASTFM = "LASTFM"
+}
+
+export default LinkedAccountService;

@@ -17,3 +17,13 @@
  * along with this program. If not, see <https://gnu.org/licenses/>
  */
 
+import {JsonObject, JsonProperty} from "json2typescript";
+
+@JsonObject("BadgeStatus")
+export default class BadgeStatus {
+	@JsonProperty("notifications", Number)
+	public notifications: number = 0;
+
+	@JsonProperty("messages", Number)
+	public messages: number = 0;
+}

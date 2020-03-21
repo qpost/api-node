@@ -17,3 +17,36 @@
  * along with this program. If not, see <https://gnu.org/licenses/>
  */
 
+import {JsonObject, JsonProperty} from "json2typescript";
+import User from "./User";
+
+@JsonObject("Follower")
+export default class Follower {
+	@JsonProperty("id", Number)
+	private id: number = undefined;
+
+	@JsonProperty("sender", User)
+	private sender: User = undefined;
+
+	@JsonProperty("receiver", User)
+	private receiver: User = undefined;
+
+	@JsonProperty("time", String)
+	private time: string = undefined;
+
+	public getId(): number {
+		return this.id;
+	}
+
+	public getSender(): User {
+		return this.sender;
+	}
+
+	public getReceiver(): User {
+		return this.receiver;
+	}
+
+	public getTime(): string {
+		return this.time;
+	}
+}
