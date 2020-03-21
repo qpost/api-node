@@ -1,7 +1,8 @@
 {
-	"name": "@qpost/api",
+	"name": "qpost",
 	"version": "0.1.0",
-	"description": "Node.js library for qpost API",
+	"description": "Node.js library for the qpost API",
+	"type": "module",
 	"repository": {
 		"type": "git",
 		"url": "git+https://gitlab.com/Gigadrive/qpost/api-node.git"
