@@ -45,7 +45,7 @@ export default class User {
 	@JsonProperty("birthday", String, true)
 	private birthday?: string = undefined;
 
-	@JsonProperty("privacyLevel", PrivacyLevel)
+	@JsonProperty("privacyLevel", String)
 	private privacyLevel: PrivacyLevel = undefined;
 
 	@JsonProperty("time", String)
@@ -75,7 +75,7 @@ export default class User {
 	@JsonProperty("blocked", Boolean)
 	private blocked: boolean = undefined;
 
-	@JsonProperty("features", [Feature])
+	@JsonProperty("features", [String])
 	private features: Feature[] | null = undefined;
 
 	@JsonProperty("identities", [LinkedAccount])

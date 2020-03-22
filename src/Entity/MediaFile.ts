@@ -18,6 +18,7 @@
  */
 
 import {JsonObject, JsonProperty} from "json2typescript";
+import MediaFileType from "./MediaFileType";
 
 @JsonObject("MediaFile")
 export default class MediaFile {
@@ -31,7 +32,7 @@ export default class MediaFile {
 	private url: string = undefined;
 
 	@JsonProperty("type", String)
-	private type: string = undefined;
+	private type: MediaFileType = undefined;
 
 	@JsonProperty("time", String)
 	private time: string = undefined;
@@ -48,7 +49,7 @@ export default class MediaFile {
 		return this.url;
 	}
 
-	public getType(): string {
+	public getType(): MediaFileType {
 		return this.type;
 	}
 

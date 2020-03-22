@@ -39,7 +39,7 @@ export default class FeedEntry {
 	@JsonProperty("parent", FeedEntry, true)
 	private parent?: FeedEntry = undefined;
 
-	@JsonProperty("type", FeedEntryType)
+	@JsonProperty("type", String)
 	private type: FeedEntryType = undefined;
 
 	@JsonProperty("nsfw", Boolean)

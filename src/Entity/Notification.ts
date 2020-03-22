@@ -21,6 +21,7 @@ import FollowRequest from "./FollowRequest";
 import FeedEntry from "./FeedEntry";
 import User from "./User";
 import {JsonProperty} from "json2typescript";
+import NotificationType from "./NotificationType";
 
 export default class Notification {
 	@JsonProperty("id", Number)
@@ -30,7 +31,7 @@ export default class Notification {
 	private user: User = undefined;
 
 	@JsonProperty("type", String)
-	private type: string = undefined;
+	private type: NotificationType = undefined;
 
 	@JsonProperty("referencedUser", User, true)
 	private referencedUser?: User = undefined;
@@ -58,7 +59,7 @@ export default class Notification {
 		return this.user;
 	}
 
-	public getType(): string {
+	public getType(): NotificationType {
 		return this.type;
 	}
 

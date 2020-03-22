@@ -25,7 +25,7 @@ export default class LinkedAccount {
 	@JsonProperty("id", Number)
 	private id: number = undefined;
 
-	@JsonProperty("service", LinkedAccountService)
+	@JsonProperty("service", String)
 	private service: LinkedAccountService = undefined;
 
 	@JsonProperty("linkedUserId", String)
