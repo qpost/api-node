@@ -20,8 +20,18 @@
 import StreamListener from "./StreamListener";
 import StreamMessageParser from "../Message/StreamMessageParser";
 
+/**
+ * Manager class for all Stream API listeners.
+ */
 export default class StreamListenerManager {
+	/**
+	 * All currently registered listeners.
+	 */
 	protected listeners: StreamListener[];
+
+	/**
+	 * Parser instance used for parsing incoming messages.
+	 */
 	protected parser: StreamMessageParser;
 
 	constructor() {
@@ -29,23 +39,37 @@ export default class StreamListenerManager {
 		this.parser = new StreamMessageParser();
 	}
 
+	/**
+	 * All currently registered listeners.
+	 */
 	public getListeners(): StreamListener[] {
 		return this.listeners;
 	}
 
+	/**
+	 * Parser instance used for parsing incoming messages.
+	 */
 	public getParser(): StreamMessageParser {
 		return this.parser;
 	}
 
+	/**
+	 * Registers a listener, that will be fed incoming messages.
+	 * @param listener The listener to be registered.
+	 */
 	public registerListener(listener: StreamListener): void {
 		if (this.listeners.includes(listener)) return;
 
 		this.listeners.push(listener);
 	}
 
+	/**
+	 * Handles a message string, if successful, it will be passed to all registered listeners.
+	 * @param rawMessage The message string to handle.
+	 */
 	public handleMessage(rawMessage: string): void {
 		const message = this.parser.parse(rawMessage);
-		if (message === null) return;
+		if (message === null || message.getName() === "StreamMessage") return;
 
 		const functionName = "on" + message.getName();
 		this.listeners.forEach(listener => {

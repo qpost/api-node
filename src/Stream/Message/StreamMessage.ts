@@ -20,21 +20,36 @@
 import StreamMessageCode from "./StreamMessageCode";
 import {JsonObject, JsonProperty} from "json2typescript";
 
+/**
+ * A message sent through the Stream API.
+ */
 @JsonObject("StreamMessage")
 export default class StreamMessage {
+	/**
+	 * The message code, unique to this type of message.
+	 */
 	@JsonProperty("code", StreamMessageCode)
 	protected code: StreamMessageCode;
 
+	/**
+	 * The message name, unique to this type of message.
+	 */
 	protected name: string;
 
 	constructor() {
 		this.name = "StreamMessage";
 	}
 
+	/**
+	 * The message code, unique to this type of message.
+	 */
 	public getCode(): StreamMessageCode {
 		return this.code;
 	}
 
+	/**
+	 * The message name, unique to this type of message.
+	 */
 	public getName(): string {
 		return this.name;
 	}

@@ -22,6 +22,9 @@ import StreamMessage from "./StreamMessage";
 import StreamMessageCode from "./StreamMessageCode";
 import AuthorizationRequestMessage from "./AuthorizationRequestMessage";
 
+/**
+ * Class used to parse a message string for the Stream API.
+ */
 export default class StreamMessageParser {
 	public parse(message: string): StreamMessage | null {
 		const genericMessage = BaseObject.convertObject(StreamMessage, message);

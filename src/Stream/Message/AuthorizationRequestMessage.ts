@@ -21,11 +21,22 @@ import StreamMessage from "./StreamMessage";
 import StreamMessageCode from "./StreamMessageCode";
 import {JsonObject, JsonProperty} from "json2typescript";
 
+/**
+ * Sent from the client to the server to identify and pass a token.
+ * Should be sent right away after connecting, if no valid token has been passed after 5 seconds, the client will be disconnected.
+ */
 @JsonObject("AuthorizationRequestMessage")
 export default class AuthorizationRequestMessage extends StreamMessage {
+	/**
+	 * The token to use for authentication.
+	 */
 	@JsonProperty("token", String)
 	public token: string;
 
+	/**
+	 * The type of authorization.
+	 * Use "client", "server" is only for internal usage.
+	 */
 	@JsonProperty("type", String)
 	public type: "client" | "server";
 

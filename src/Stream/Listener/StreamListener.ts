@@ -19,7 +19,14 @@
 
 import AuthorizationRequestMessage from "../Message/AuthorizationRequestMessage";
 
+/**
+ * Create a sub-class to listen to specific messages being passed through the Stream API.
+ */
 export default class StreamListener {
+	/**
+	 * Listener function for {@link AuthorizationRequestMessage} messages.
+	 * @param message The incoming message.
+	 */
 	public onAuthorizationRequestMessage(message: AuthorizationRequestMessage): void {
 	}
 }
