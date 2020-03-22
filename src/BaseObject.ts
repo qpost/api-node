@@ -18,7 +18,6 @@
  */
 
 import {JsonConvert} from "json2typescript";
-import {PropertyMatchingRule} from "json2typescript/src/json2typescript/json-convert-enums";
 
 export default class BaseObject {
 	private static jsonConvert: JsonConvert;
@@ -46,7 +45,7 @@ export default class BaseObject {
 	private static getJsonConverter(): JsonConvert {
 		if (!this.jsonConvert) {
 			this.jsonConvert = new JsonConvert();
-			this.jsonConvert.propertyMatchingRule = PropertyMatchingRule.CASE_INSENSITIVE;
+			this.jsonConvert.propertyMatchingRule = 2;
 		}
 
 		return this.jsonConvert;
