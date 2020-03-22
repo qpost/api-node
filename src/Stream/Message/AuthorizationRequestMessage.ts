@@ -31,14 +31,14 @@ export default class AuthorizationRequestMessage extends StreamMessage {
 	 * The token to use for authentication.
 	 */
 	@JsonProperty("token", String)
-	public token: string;
+	public token: string = undefined;
 
 	/**
 	 * The type of authorization.
 	 * Use "client", "server" is only for internal usage.
 	 */
 	@JsonProperty("type", String)
-	public type: "client" | "server";
+	public type: "client" | "server" = undefined;
 
 	constructor() {
 		super();

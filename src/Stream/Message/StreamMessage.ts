@@ -28,8 +28,8 @@ export default class StreamMessage {
 	/**
 	 * The message code, unique to this type of message.
 	 */
-	@JsonProperty("code", StreamMessageCode)
-	protected code: StreamMessageCode;
+	@JsonProperty("code", Number)
+	protected code: StreamMessageCode = undefined;
 
 	/**
 	 * The message name, unique to this type of message.
