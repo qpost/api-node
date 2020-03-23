@@ -17,7 +17,6 @@
  * along with this program. If not, see <https://gnu.org/licenses/>
  */
 
-import axios, {AxiosInstance, Method} from "axios";
 import BadgeStatusEndpoint from "./Endpoint/BadgeStatusEndpoint";
 import BirthdaysEndpoint from "./Endpoint/BirthdaysEndpoint";
 import BlockEndpoint from "./Endpoint/BlockEndpoint";
@@ -35,6 +34,18 @@ import SuggestedUsersEndpoint from "./Endpoint/SuggestedUsersEndpoint";
 import TokenEndpoint from "./Endpoint/TokenEndpoint";
 import TrendsEndpoint from "./Endpoint/TrendsEndpoint";
 import UserEndpoint from "./Endpoint/UserEndpoint";
+import nodeFetch from "node-fetch";
+
+export type Method =
+	| 'get' | 'GET'
+	| 'delete' | 'DELETE'
+	| 'head' | 'HEAD'
+	| 'options' | 'OPTIONS'
+	| 'post' | 'POST'
+	| 'put' | 'PUT'
+	| 'patch' | 'PATCH'
+	| 'link' | 'LINK'
+	| 'unlink' | 'UNLINK';
 
 export default class qpostAPI {
 	public readonly badgeStatus: BadgeStatusEndpoint = new BadgeStatusEndpoint(this);
@@ -55,16 +66,23 @@ export default class qpostAPI {
 	public readonly trends: TrendsEndpoint = new TrendsEndpoint(this);
 	public readonly user: UserEndpoint = new UserEndpoint(this);
 
-	/**
-	 * The axios instance to be used.
-	 */
-	private http: AxiosInstance;
+	private;
+	private baseURL: string = undefined;
+	private authToken: string = undefined;
 
-	constructor(baseURL?: string, token?: string) {
-		this.http = axios.create({
-			baseURL,
-			headers: token ? {"Authorization": "Bearer " + token} : {}
-		});
+	constructor(baseURL: string, token?: string) {
+		this.baseURL = baseURL;
+		this.authToken = token;
+
+		qpostAPI.setupFetch();
+	}
+
+	private static setupFetch(): void {
+		if (global) {
+			if (!("fetch" in global)) {
+				global["fetch"] = nodeFetch;
+			}
+		}
 	}
 
 	/**
@@ -97,6 +115,23 @@ export default class qpostAPI {
 	 * @param data The request data as an object.
 	 */
 	public handleRequestWithPromise(url: string, method?: Method, data?: any): Promise<any> {
+		let queryString = "";
+		if (method === "GET" && data) {
+			queryString = "";
+
+			for (let dataKey in data) {
+				queryString += (queryString === "" ? "?" : "&") + dataKey + "=" + data[dataKey];
+			}
+		}
+
+		let headers = {
+			"Content-Type": "application/json"
+		};
+
+		if (this.authToken) {
+			headers["Authorization"] = "Bearer " + this.authToken;
+		}
+
 		method = method || "GET";
 		data = data || {};
 
@@ -105,32 +140,31 @@ export default class qpostAPI {
 				return reject("No URL specified.");
 			}
 
-			this.http.request({
-				method,
-				url,
-				data: method !== "GET" ? data : {},
-				params: method === "GET" ? data : {}
+			fetch(this.baseURL + url + queryString, {
+				body: method !== "GET" ? JSON.stringify(data) : undefined,
+				headers,
+				method
 			}).then(response => {
-				if (response.data || (Math.floor(response.status / 100) == 2)) {
-					if (response.data.error) {
-						return reject(response.data.error);
-					} else {
-						resolve(response.data);
+				response.json().then(value => {
+					if (!value) {
+						console.error(3, value);
+						return reject("An error occurred.");
 					}
-				} else {
-					reject("An error occurred.");
-				}
+
+					console.error(4, value);
+
+					return value.hasOwnProperty("error") ? reject(value.error) : (response.ok ? resolve(value) : reject("An error occurred."));
+				}).catch(reason => {
+					if (response.ok && method === "DELETE") {
+						return resolve();
+					}
+
+					return reject("An error occurred.");
+				})
 			}).catch(error => {
-				console.error(error);
-				const response = error.response;
-
-				let errorMessage = "An error occurred.";
-				if (response && response.data && response.data.error) {
-					errorMessage = response.data.error;
-				}
-
-				reject(errorMessage);
-			})
+				console.error(1, error);
+				return reject("An error occurred.");
+			});
 		});
 	}
 }
