@@ -121,7 +121,6 @@ export default class qpostAPI {
 					reject("An error occurred.");
 				}
 			}).catch(error => {
-				console.error(error);
 				const response = error.response;
 
 				let errorMessage = "An error occurred.";
