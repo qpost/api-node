@@ -17,31 +17,38 @@
  * along with this program. If not, see <https://gnu.org/licenses/>
  */
 
-import BaseObject from "../../BaseObject";
 import StreamMessage from "./StreamMessage";
 import StreamMessageCode from "./StreamMessageCode";
-import AuthorizationRequestMessage from "./AuthorizationRequestMessage";
-import AuthorizationResponseMessage from "./AuthorizationRequestResponse";
+import {JsonObject, JsonProperty} from "json2typescript";
+import User from "../../Entity/User";
 
 /**
- * Class used to parse a message string for the Stream API.
+ * Sent from the server to the client as a response to {@link AuthorizationRequestMessage}.
  */
-export default class StreamMessageParser {
-	public parse(message: string): StreamMessage | null {
-		const genericMessage = BaseObject.convertObject(StreamMessage, message);
+@JsonObject("AuthorizationResponseMessage")
+export default class AuthorizationResponseMessage extends StreamMessage {
+	/**
+	 * Whether or not the authorization process was successful.
+	 */
+	@JsonProperty("ok", Boolean)
+	public ok: boolean = undefined;
 
-		let type = StreamMessage;
-		switch (genericMessage.getCode()) {
-			case StreamMessageCode.AUTHORIZATION_REQUEST:
-				type = AuthorizationRequestMessage;
-				break;
-			case StreamMessageCode.AUTHORIZATION_RESPONSE:
-				type = AuthorizationResponseMessage;
-				break;
-			default:
-				return null;
-		}
+	/**
+	 * A message containing details about the authorization process.
+	 */
+	@JsonProperty("message", String)
+	public message: string = undefined;
 
-		return BaseObject.convertObject(type, message);
+	/**
+	 * The user, that the client was authenticated as, if available.
+	 */
+	@JsonProperty("user", User, true)
+	public user: User = undefined;
+
+	constructor() {
+		super();
+
+		this.code = StreamMessageCode.AUTHORIZATION_REQUEST;
+		this.name = "AuthorizationRequestMessage";
 	}
 }

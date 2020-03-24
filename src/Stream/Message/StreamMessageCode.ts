@@ -18,7 +18,8 @@
  */
 
 enum StreamMessageCode {
-	AUTHORIZATION_REQUEST
+	AUTHORIZATION_REQUEST,
+	AUTHORIZATION_RESPONSE
 }
 
 export default StreamMessageCode;
