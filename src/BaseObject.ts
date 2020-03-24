@@ -42,6 +42,14 @@ export default class BaseObject {
 		return this.getJsonConverter().deserializeArray(parsed, type);
 	}
 
+	static serializeObject<T>(object: object): string {
+		return JSON.stringify(this.getJsonConverter().serialize(object));
+	}
+
+	static serializeArray<T>(array: any[]): string {
+		return JSON.stringify(this.getJsonConverter().serializeArray(array));
+	}
+
 	private static getJsonConverter(): JsonConvert {
 		if (!this.jsonConvert) {
 			this.jsonConvert = new JsonConvert();
