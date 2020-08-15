@@ -25,7 +25,8 @@ enum LinkedAccountService {
 	LASTFM = "LASTFM",
 	SPOTIFY = "SPOTIFY",
 	INSTAGRAM = "INSTAGRAM",
-	REDDIT = "REDDIT"
+	REDDIT = "REDDIT",
+	YOUTUBE = "YOUTUBE"
 }
 
 export default LinkedAccountService;
