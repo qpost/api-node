@@ -22,7 +22,9 @@ import FeedEntry from "./FeedEntry";
 import User from "./User";
 import {JsonProperty} from "json2typescript";
 import NotificationType from "./NotificationType";
+import {JsonObject} from "json2typescript/index";
 
+@JsonObject("Notification")
 export default class Notification {
 	@JsonProperty("id", Number)
 	private id: number = undefined;
